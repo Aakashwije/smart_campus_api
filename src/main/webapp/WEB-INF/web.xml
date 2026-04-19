@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!--
+        Minimal web.xml for Tomcat 9 / Servlet 3.1.
+
+        Jersey's ServletContainerInitializer discovers SmartCampusApplication
+        automatically via the @ApplicationPath("/api/v1") annotation, so no
+        explicit servlet registration is needed here.
+
+        This file exists mainly so NetBeans recognises the project as a
+        Web Application and enables the Tomcat Run/Deploy actions.
+    -->
+    <display-name>Smart Campus API</display-name>
+
+</web-app>
