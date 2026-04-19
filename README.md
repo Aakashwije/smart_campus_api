@@ -1,6 +1,7 @@
 # Smart Campus — Sensor & Room Management API
 
 > A lightweight JAX-RS microservice for managing campus IoT infrastructure — rooms, sensors, and sensor reading telemetry.
+> Coursework submission for Smart Campus API (JAX-RS, IIT)
 
 ![Java](https://img.shields.io/badge/Java-11-blue?logo=java&logoColor=white)
 ![Jersey](https://img.shields.io/badge/Jersey-2.41-green?logo=apache&logoColor=white)
@@ -838,7 +839,7 @@ curl -s http://localhost:8080/smart-campus-api/api/v1/rooms/NONEXISTENT | python
 
 ## GitHub Repository
 
-Source code: [github.com/Aakashwije/smart-campus-api-jaxrs](https://github.com/Aakashwije/smart-campus-api-jaxrs)
+Source code: [github.com/Aakashwije/smart-campus-api-jaxrs](https://github.com/Aakashwije/smart_campus_api)
 
 ---
 
