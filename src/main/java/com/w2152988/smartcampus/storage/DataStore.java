@@ -19,7 +19,7 @@ import com.w2152988.smartcampus.model.SensorReading;
  */
 public final class DataStore {
 
-  // ── Singleton ─────────────────────────────────────────────────
+  //  Singleton 
   private static final DataStore INSTANCE = new DataStore();
 
   public static DataStore getInstance() {
@@ -90,7 +90,7 @@ public final class DataStore {
     return rooms.remove(id);
   }
 
-  // ── Sensor Accessors ──────────────────────────────────────────
+  //  Sensor Accessors 
 
   public Map<String, Sensor> getSensors() {
     return sensors;
@@ -121,7 +121,7 @@ public final class DataStore {
     return sensors.remove(id);
   }
 
-  // ── Reading Accessors ─────────────────────────────────────────
+  //  Reading Accessors 
 
   public List<SensorReading> getReadings(String sensorId) {
     return readings.getOrDefault(sensorId, Collections.synchronizedList(new ArrayList<>()));
@@ -132,7 +132,7 @@ public final class DataStore {
         .add(reading);
   }
 
-  // ── Seed Data ─────────────────────────────────────────────────
+  //  Seed Data 
 
   private void seedData() {
     // Sample rooms

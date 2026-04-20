@@ -14,7 +14,7 @@ public class Room {
   private int capacity; // max occupancy
   private List<String> sensorIds = new CopyOnWriteArrayList<>(); // sensor IDs in this room
 
-  // ── Constructors ──────────────────────────────────────────────
+  //  Constructors 
 
   public Room() {
     // Jackson needs this for deserialisation
@@ -26,7 +26,7 @@ public class Room {
     this.capacity = capacity;
   }
 
-  // ── Getters & Setters ─────────────────────────────────────────
+  //  Getters & Setters 
 
   public String getId() {
     return id;
@@ -60,7 +60,7 @@ public class Room {
     this.sensorIds = new CopyOnWriteArrayList<>(sensorIds);
   }
 
-  // ── Helper Methods ────────────────────────────────────────────
+  //  Helper Methods 
 
   // Adds a sensor ID if it's not already in the list (thread-safe).
   // We check the runtime type because Jackson may deserialise sensorIds

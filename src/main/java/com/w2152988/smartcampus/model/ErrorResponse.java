@@ -19,7 +19,7 @@ public class ErrorResponse {
   private String detail;
   private String timestamp;
 
-  // ── Constructors ──────────────────────────────────────────────
+  //  Constructors 
 
   public ErrorResponse() {
     this.timestamp = Instant.now().toString();
@@ -33,7 +33,7 @@ public class ErrorResponse {
     this.timestamp = Instant.now().toString();
   }
 
-  // ── Getters & Setters ─────────────────────────────────────────
+  // Getters & Setters 
 
   public String getError() {
     return error;
@@ -75,7 +75,7 @@ public class ErrorResponse {
     this.timestamp = timestamp;
   }
 
-  // ── Factory Methods ───────────────────────────────────────────
+  // Factory Methods 
 
   public static ErrorResponse notFound(String message) {
     return new ErrorResponse("Not Found", 404, message,

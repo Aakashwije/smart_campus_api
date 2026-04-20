@@ -10,7 +10,7 @@ public class SensorReading {
   private long timestamp; // epoch millis
   private double value; // the actual measurement
 
-  // ── Constructors ──────────────────────────────────────────────
+  //  Constructors 
 
   public SensorReading() {
     // Jackson needs this for deserialisation
@@ -22,7 +22,7 @@ public class SensorReading {
     this.value = value;
   }
 
-  // ── Getters & Setters ─────────────────────────────────────────
+  //  Getters & Setters 
 
   public String getId() {
     return id;

@@ -12,7 +12,7 @@ public class Sensor {
   private double currentValue; // latest reading value
   private String roomId; // which room this sensor is in
 
-  // ── Constructors ──────────────────────────────────────────────
+  //  Constructors 
 
   public Sensor() {
     // Jackson needs this for deserialisation
@@ -26,7 +26,7 @@ public class Sensor {
     this.roomId = roomId;
   }
 
-  // ── Getters & Setters ─────────────────────────────────────────
+  //  Getters & Setters 
 
   public String getId() {
     return id;
