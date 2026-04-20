@@ -1,5 +1,9 @@
 # Smart Campus — Sensor & Room Management API
 
+Name: A.L.A.J Wijesekara  
+Student ID: w2152988  
+Module: 5COSC022W
+
 > A lightweight JAX-RS microservice for managing campus IoT infrastructure — rooms, sensors, and sensor reading telemetry.
 > Coursework submission for Smart Campus API (JAX-RS, IIT)
 
