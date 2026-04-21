@@ -46,7 +46,7 @@ Module: 5COSC022W
 
 The **Smart Campus Sensor & Room Management API** is a RESTful microservice built on **JAX-RS (Jersey 2.41)** deployed to **Apache Tomcat 9**, designed for campus facilities management and IoT sensor telemetry pipelines.
 
-The service exposes a versioned REST API under `/api/v1` for creating and querying campus rooms, registering IoT sensors, and collecting time-series sensor readings. All resources are discoverable from a single **HATEOAS** entry point at `GET /api/v1`.
+The service exposes a versioned REST API under **/api/v1** for creating and querying campus rooms, registering IoT sensors, and collecting time-series sensor readings. All resources are discoverable from a single **HATEOAS** entry point at **GET /api/v1**.
 
 ### Key Capabilities
 
@@ -59,7 +59,7 @@ The service exposes a versioned REST API under `/api/v1` for creating and queryi
 | **Structured Error Responses** | Consistent JSON error envelope with HTTP status, message, and timestamp                |
 | **Request Auditing**           | Per-request/response logging with elapsed time via a JAX-RS `ContainerRequestFilter`   |
 
-> **Note:** This service uses an in-memory `ConcurrentHashMap` store. Data is not persisted across restarts and is intended for development and demonstration environments only.
+> **Note:** This service uses an in-memory **ConcurrentHashMap** store. Data is not persisted across restarts and is intended for development and demonstration environments only.
 
 ---
 
@@ -70,8 +70,8 @@ The service exposes a versioned REST API under `/api/v1` for creating and queryi
 | Language             | Java                    | 11             | Core runtime                                              |
 | REST Framework       | JAX-RS / Jersey         | 2.41           | Resource routing, serialisation, and lifecycle management |
 | Servlet Container    | Apache Tomcat           | 9.x            | Hosts the WAR; provides Servlet 4.0 runtime               |
-| JSON Binding         | Jackson                 | Jersey-bundled | POJO ↔ JSON marshalling via `MessageBodyReader/Writer`    |
-| Dependency Injection | HK2                     | Jersey-bundled | `@Context` injection inside resource and filter classes   |
+| JSON Binding         | Jackson                 | Jersey-bundled | POJO ↔ JSON marshalling via **MessageBodyReader/Writer**    |
+| Dependency Injection | HK2                     | Jersey-bundled | **@Context** injection inside resource and filter classes   |
 | API Specification    | JAX-RS 2.1 (Jakarta EE) | 2.1            | Annotation-driven, contract-first REST design             |
 | Build Tool           | Apache Maven            | 3.6+           | Dependency management and build lifecycle                 |
 | Packaging            | maven-war-plugin (WAR)  | 3.4.0          | Standard WAR artifact deployed to Tomcat                  |
@@ -82,7 +82,7 @@ The service exposes a versioned REST API under `/api/v1` for creating and queryi
 
 ### High-Level Overview
 
-The Smart Campus API follows a **layered architecture** built on top of the JAX-RS specification (Jersey 2.41) deployed as a WAR to **Apache Tomcat 9**. Jersey's `ServletContainerInitializer` discovers `SmartCampusApplication` automatically via the `@ApplicationPath("/api/v1")` annotation — no `web.xml` servlet registration required.
+The Smart Campus API follows a **layered architecture** built on top of the JAX-RS specification (Jersey 2.41) deployed as a WAR to **Apache Tomcat 9**. Jersey's **ServletContainerInitializer** discovers **SmartCampusApplication** automatically via the **@ApplicationPath("/api/v1")** annotation — no **web.xml** servlet registration required.
 
 ```mermaid
 flowchart TB
@@ -189,9 +189,9 @@ erDiagram
     }
 ```
 
-- **Room → Sensor (One-to-Many):** A room maintains a list of sensor IDs. Each sensor holds a `roomId` foreign key. Sensors cannot be created without referencing a valid room.
-- **Sensor → SensorReading (One-to-Many):** Readings are an append-only history. Posting a new reading automatically updates the parent sensor's `currentValue`.
-- **Deletion Constraints:** A room cannot be deleted while it still has sensors assigned (`409 Conflict`). Deleting a sensor automatically unlinks it from its parent room.
+- **Room → Sensor (One-to-Many):** A room maintains a list of sensor IDs. Each sensor holds a **roomId** foreign key. Sensors cannot be created without referencing a valid room.
+- **Sensor → SensorReading (One-to-Many):** Readings are an append-only history. Posting a new reading automatically updates the parent sensor's **currentValue**.
+- **Deletion Constraints:** A room cannot be deleted while it still has sensors assigned (**409 Conflict**). Deleting a sensor automatically unlinks it from its parent room.
 
 ---
 
@@ -207,7 +207,7 @@ flowchart LR
     R1 & R2 & R3 & R4 --> ER["Standardised ErrorResponse\n{error, status, message, detail, timestamp}"]
 ```
 
-All exceptions are mapped by dedicated `ExceptionMapper<T>` providers. **No raw stack traces** are ever leaked to API consumers. Every custom exception mapper **logs the violation at WARNING level** server-side for audit purposes. The `GenericExceptionMapper` catches all unhandled `Throwable` instances, logs them internally at SEVERE level, and returns a sanitised response.
+All exceptions are mapped by dedicated **ExceptionMapper<T>** providers. **No raw stack traces** are ever leaked to API consumers. Every custom exception mapper **logs the violation at WARNING level** server-side for audit purposes. The **GenericExceptionMapper** catches all unhandled **Throwable** instances, logs them internally at SEVERE level, and returns a sanitised response.
 
 ---
 
@@ -233,11 +233,11 @@ All exceptions are mapped by dedicated `ExceptionMapper<T>` providers. **No raw 
 | Decision                                  | Rationale                                                                                                                                                                                                |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Apache Tomcat 9** WAR deployment        | Standard servlet container; enables NetBeans Run/Deploy integration out of the box                                                                                                                       |
-| **In-memory `ConcurrentHashMap`** storage | Thread-safe without external DB dependencies; suitable for demonstration and prototyping                                                                                                                 |
-| **Sub-resource locator** for readings     | Enforces REST hierarchy (`/sensors/{id}/readings`); separates concerns between sensor CRUD and reading history                                                                                           |
-| **Per-request resource lifecycle**        | Default JAX-RS behaviour; forces shared state into the thread-safe `DataStore` singleton                                                                                                                 |
-| **HATEOAS per-resource links**            | Every resource response includes `_links` — rooms and sensors get self, update, delete, collection, and relationship links; readings get self, sensor, and collection — full Richardson Maturity Level 3 |
-| **WAR** via maven-war-plugin              | Standard deployable artifact; drop into any Tomcat `webapps/` folder                                                                                                                                     |
+| **In-memory **ConcurrentHashMap**** storage | Thread-safe without external DB dependencies; suitable for demonstration and prototyping                                                                                                                 |
+| **Sub-resource locator** for readings     | Enforces REST hierarchy (**/sensors/{id}/readings**); separates concerns between sensor CRUD and reading history                                                                                           |
+| **Per-request resource lifecycle**        | Default JAX-RS behaviour; forces shared state into the thread-safe **DataStore** singleton                                                                                                                 |
+| **HATEOAS per-resource links**            | Every resource response includes **_links** — rooms and sensors get self, update, delete, collection, and relationship links; readings get self, sensor, and collection — full Richardson Maturity Level 3 |
+| **WAR** via maven-war-plugin              | Standard deployable artifact; drop into any Tomcat **webapps/** folder                                                                                                                                     |
 
 ---
 
