@@ -42,6 +42,8 @@ Module: 5COSC022W
 13. [Troubleshooting](#13-troubleshooting)
 14. [Security Considerations](#14-security-considerations)
 15. [Known Limitations](#15-known-limitations)
+16. [Coursework Report (PDF)](#coursework-report-pdf)
+17. [Demo Video](#demo-video)
 
 ---
 
@@ -847,6 +849,16 @@ curl -s http://localhost:8080/smart-campus-api/api/v1/rooms/NONEXISTENT | python
 ## GitHub Repository
 
 Source code: [github.com/Aakashwije/smart_campus_api](https://github.com/Aakashwije/smart_campus_api)
+
+## Coursework Report (PDF)
+
+Full written report covering all five coursework parts:
+[w2152988_REPORT_CSA_CW.pdf](https://github.com/Aakashwije/smart_campus_api/releases/download/v1.0.0/w2152988_REPORT_CSA_CW.pdf)
+
+## Demo Video
+
+A walkthrough of the running API — endpoints, HATEOAS responses, and error scenarios demonstrated live:
+[youtu.be/QKq79sFY6UY](https://youtu.be/QKq79sFY6UY)
 
 ---
 
