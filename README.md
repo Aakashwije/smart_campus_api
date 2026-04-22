@@ -286,11 +286,11 @@ smart_campus_api/
 
 ### Prerequisites
 
-| Tool          | Required Version | Verify Command        |
-| ------------- | ---------------- | --------------------- |
-| Java (JDK)    | 11 or later      | `java -version`       |
-| Apache Maven  | 3.6 or later     | `mvn -version`        |
-| Apache Tomcat | 9.x              | Check `CATALINA_HOME` |
+| Tool          | Required Version | Download                                                          | Verify Command        |
+| ------------- | ---------------- | ----------------------------------------------------------------- | --------------------- |
+| Java (JDK)    | 11 or later      | [adoptium.net](https://adoptium.net/temurin/releases/?version=11) | `java -version`       |
+| Apache Maven  | 3.6 or later     | [maven.apache.org](https://maven.apache.org/download.cgi)         | `mvn -version`        |
+| Apache Tomcat | 9.x              | [tomcat.apache.org](https://tomcat.apache.org/download-90.cgi)    | `echo $CATALINA_HOME` |
 
 > **Note:** Ensure `JAVA_HOME` points to a JDK 11+ installation. Using a JRE-only distribution will cause compilation to fail.
 
@@ -597,7 +597,7 @@ Returning **full objects** (our approach) reduces HTTP round-trips and is optima
 - **Pros:** Very small response payloads; minimal bandwidth usage.
 - **Cons:** The client must make an additional `GET` for each room's details — the classic **N+1 problem** — dramatically increasing total latency and server load.
 
-**Best practice:** For this API's scale, returning full objects is appropriate. The implementation also supports **pagination** via `?page=0&size=20` on all collection endpoints to bound payload size as data grows.
+**Best practice:** For this API's scale, returning full objects is appropriate. The implementation also supports **pagination** via `?page=0&size=20` on the rooms collection endpoint (`GET /api/v1/rooms`) to bound payload size as data grows.
 
 ---
 
@@ -846,7 +846,7 @@ curl -s http://localhost:8080/smart-campus-api/api/v1/rooms/NONEXISTENT | python
 
 ## GitHub Repository
 
-Source code: [github.com/Aakashwije/smart_campus_api](<(https://github.com/Aakashwije/smart_campus_api)>)
+Source code: [github.com/Aakashwije/smart_campus_api](https://github.com/Aakashwije/smart_campus_api)
 
 ---
 
@@ -881,7 +881,7 @@ Source code: [github.com/Aakashwije/smart_campus_api](<(https://github.com/Aakas
 ## 15. Known Limitations
 
 - **No persistence:** All data resides in `ConcurrentHashMap` and is lost on restart. Integrate JPA (e.g., Hibernate + H2 or PostgreSQL) to add durability.
-- **Basic pagination only:** Offset-based pagination is implemented on all collection endpoints (`?page=0&size=20`); cursor-based pagination for efficient traversal of large datasets is not yet supported.
+- **Basic pagination only:** Offset-based pagination is implemented on the rooms collection endpoint (`GET /api/v1/rooms` via `?page=0&size=20`); sensors and readings return the full collection. Cursor-based pagination for efficient traversal of large datasets is not yet supported.
 - **No authentication:** All endpoints are publicly accessible. See [Security Considerations](#14-security-considerations).
 - **No OpenAPI specification:** The API does not ship an OpenAPI 3.0 document. Add `swagger-core` to auto-generate and serve a live spec at `/api/v1/openapi.json`.
 - **Single-node only:** The in-memory store is not distributed. Horizontal scaling requires replacing `DataStore` with a shared cache (e.g., Redis) or a database-backed repository.
