@@ -13,6 +13,9 @@ Module: 5COSC022W
 ![Maven](https://img.shields.io/badge/Maven-3.6+-red?logo=apachemaven&logoColor=white)
 ![API Version](https://img.shields.io/badge/API-v1.0.0-orange)
 ![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
+![Release](https://img.shields.io/github/v/release/Aakashwije/smart-campus-api-jaxrs?label=Release&color=orange)
+![Downloads](https://img.shields.io/github/downloads/Aakashwije/smart-campus-api-jaxrs/total?label=Downloads)
+![License](https://img.shields.io/github/license/Aakashwije/smart-campus-api-jaxrs?color=blue)
 
 ## Table of Contents
 
