@@ -1,7 +1,7 @@
 # Smart Campus — Sensor & Room Management API
 
-Name: A.L.A.J Wijesekara  
-Student ID: w2152988  
+Name: A.L.A.J Wijesekara
+Student ID: w2152988
 Module: 5COSC022W
 
 > A lightweight JAX-RS microservice for managing campus IoT infrastructure — rooms, sensors, and sensor reading telemetry.
@@ -13,9 +13,9 @@ Module: 5COSC022W
 ![Maven](https://img.shields.io/badge/Maven-3.6+-red?logo=apachemaven&logoColor=white)
 ![API Version](https://img.shields.io/badge/API-v1.0.0-orange)
 ![Status](https://img.shields.io/badge/Status-Stable-brightgreen)
-![Release](https://img.shields.io/github/v/release/Aakashwije/smart-campus-api-jaxrs?label=Release&color=orange)
-![Downloads](https://img.shields.io/github/downloads/Aakashwije/smart-campus-api-jaxrs/total?label=Downloads)
-![License](https://img.shields.io/github/license/Aakashwije/smart-campus-api-jaxrs?color=blue)
+![Release](https://img.shields.io/github/v/release/Aakashwije/smart_campus_api?label=Release&color=orange)
+![Downloads](https://img.shields.io/github/downloads/Aakashwije/smart_campus_api/total?label=Downloads)
+![License](https://img.shields.io/github/license/Aakashwije/smart_campus_api?color=blue)
 
 ## Table of Contents
 
@@ -73,8 +73,8 @@ The service exposes a versioned REST API under **/api/v1** for creating and quer
 | Language             | Java                    | 11             | Core runtime                                              |
 | REST Framework       | JAX-RS / Jersey         | 2.41           | Resource routing, serialisation, and lifecycle management |
 | Servlet Container    | Apache Tomcat           | 9.x            | Hosts the WAR; provides Servlet 4.0 runtime               |
-| JSON Binding         | Jackson                 | Jersey-bundled | POJO ↔ JSON marshalling via **MessageBodyReader/Writer**    |
-| Dependency Injection | HK2                     | Jersey-bundled | **@Context** injection inside resource and filter classes   |
+| JSON Binding         | Jackson                 | Jersey-bundled | POJO ↔ JSON marshalling via **MessageBodyReader/Writer**  |
+| Dependency Injection | HK2                     | Jersey-bundled | **@Context** injection inside resource and filter classes |
 | API Specification    | JAX-RS 2.1 (Jakarta EE) | 2.1            | Annotation-driven, contract-first REST design             |
 | Build Tool           | Apache Maven            | 3.6+           | Dependency management and build lifecycle                 |
 | Packaging            | maven-war-plugin (WAR)  | 3.4.0          | Standard WAR artifact deployed to Tomcat                  |
@@ -233,21 +233,21 @@ All exceptions are mapped by dedicated **ExceptionMapper<T>** providers. **No ra
 
 ### Key Design Decisions
 
-| Decision                                  | Rationale                                                                                                                                                                                                |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Apache Tomcat 9** WAR deployment        | Standard servlet container; enables NetBeans Run/Deploy integration out of the box                                                                                                                       |
-| **In-memory **ConcurrentHashMap**** storage | Thread-safe without external DB dependencies; suitable for demonstration and prototyping                                                                                                                 |
-| **Sub-resource locator** for readings     | Enforces REST hierarchy (**/sensors/{id}/readings**); separates concerns between sensor CRUD and reading history                                                                                           |
-| **Per-request resource lifecycle**        | Default JAX-RS behaviour; forces shared state into the thread-safe **DataStore** singleton                                                                                                                 |
-| **HATEOAS per-resource links**            | Every resource response includes **_links** — rooms and sensors get self, update, delete, collection, and relationship links; readings get self, sensor, and collection — full Richardson Maturity Level 3 |
-| **WAR** via maven-war-plugin              | Standard deployable artifact; drop into any Tomcat **webapps/** folder                                                                                                                                     |
+| Decision                                        | Rationale                                                                                                                                                                                                   |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Apache Tomcat 9** WAR deployment              | Standard servlet container; enables NetBeans Run/Deploy integration out of the box                                                                                                                          |
+| **In-memory **ConcurrentHashMap\*\*\*\* storage | Thread-safe without external DB dependencies; suitable for demonstration and prototyping                                                                                                                    |
+| **Sub-resource locator** for readings           | Enforces REST hierarchy (**/sensors/{id}/readings**); separates concerns between sensor CRUD and reading history                                                                                            |
+| **Per-request resource lifecycle**              | Default JAX-RS behaviour; forces shared state into the thread-safe **DataStore** singleton                                                                                                                  |
+| **HATEOAS per-resource links**                  | Every resource response includes **\_links** — rooms and sensors get self, update, delete, collection, and relationship links; readings get self, sensor, and collection — full Richardson Maturity Level 3 |
+| **WAR** via maven-war-plugin                    | Standard deployable artifact; drop into any Tomcat **webapps/** folder                                                                                                                                      |
 
 ---
 
 ## 4. Project Structure
 
 ```
-smart-campus-api-jaxrs/
+smart_campus_api/
 ├── pom.xml                              # Maven project descriptor
 ├── README.md                            # This document
 ├── src/main/webapp/WEB-INF/
@@ -846,7 +846,7 @@ curl -s http://localhost:8080/smart-campus-api/api/v1/rooms/NONEXISTENT | python
 
 ## GitHub Repository
 
-Source code: [github.com/Aakashwije/smart_campus_api]((https://github.com/Aakashwije/smart_campus_api))
+Source code: [github.com/Aakashwije/smart_campus_api](<(https://github.com/Aakashwije/smart_campus_api)>)
 
 ---
 
