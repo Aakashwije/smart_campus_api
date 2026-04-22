@@ -846,7 +846,7 @@ curl -s http://localhost:8080/smart-campus-api/api/v1/rooms/NONEXISTENT | python
 
 ## GitHub Repository
 
-Source code: [github.com/Aakashwije/smart-campus-api-jaxrs](https://github.com/Aakashwije/smart_campus_api)
+Source code: [github.com/Aakashwije/smart_campus_api]((https://github.com/Aakashwije/smart_campus_api))
 
 ---
 
