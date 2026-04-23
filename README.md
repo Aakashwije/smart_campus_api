@@ -47,6 +47,30 @@ Module: 5COSC022W
 
 ---
 
+## Quick Start
+
+> This is a WAR application — it runs inside **Apache Tomcat 9**, not via `mvn exec:java`. There is no embedded server.
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Aakashwije/smart_campus_api.git
+cd smart_campus_api
+
+# 2. Build the WAR
+mvn clean package
+
+# 3. Deploy to Tomcat
+cp target/smart-campus-api.war $CATALINA_HOME/webapps/
+$CATALINA_HOME/bin/startup.sh
+
+# 4. Verify — hit the HATEOAS discovery endpoint
+curl -s http://localhost:8080/smart-campus-api-jaxrs/api/v1 | python3 -m json.tool
+```
+
+> **Prerequisites:** Java 11+, Maven 3.6+, Apache Tomcat 9.x. See [Getting Started](#5-getting-started) for full setup details.
+
+---
+
 ## 1. Overview
 
 The **Smart Campus Sensor & Room Management API** is a RESTful microservice built on **JAX-RS (Jersey 2.41)** deployed to **Apache Tomcat 9**, designed for campus facilities management and IoT sensor telemetry pipelines.
