@@ -327,17 +327,17 @@ INFO: Deploying web application archive [.../smart-campus-api.war]
 
 ### Runtime Configuration
 
-| Property      | Default Value                                   | Description                                                                         |
-| ------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Context path  | `/smart-campus-api`                             | Derived from the WAR filename                                                       |
-| API base path | `http://localhost:8080/smart-campus-api/api/v1` | Full URL to reach any endpoint                                                      |
-| Data seed     | Enabled                                         | Rooms: `LIB-301`, `ENG-102`, `ROOM-101` · Sensors: `TEMP-001`, `CO2-001`, `OCC-001` |
+| Property      | Default Value                                         | Description                                                                         |
+| ------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Context path  | `/smart-campus-api-jaxrs`                             | Set explicitly via `META-INF/context.xml` inside the WAR                            |
+| API base path | `http://localhost:8080/smart-campus-api-jaxrs/api/v1` | Full URL to reach any endpoint                                                      |
+| Data seed     | Enabled                                               | Rooms: `LIB-301`, `ENG-102`, `ROOM-101` · Sensors: `TEMP-001`, `CO2-001`, `OCC-001` |
 
 ---
 
 ## 6. API Reference
 
-**Base URL:** `http://localhost:8080/smart-campus-api/api/v1`
+**Base URL:** `http://localhost:8080/smart-campus-api-jaxrs/api/v1`
 
 **Content negotiation:** All request and response bodies use `application/json`. Sending a different `Content-Type` on `POST`/`PUT` requests returns `415 Unsupported Media Type`.
 
@@ -364,22 +364,22 @@ INFO: Deploying web application archive [.../smart-campus-api.war]
   },
   "_links": {
     "self": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/",
       "method": "GET",
       "description": "This discovery endpoint"
     },
     "rooms": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/rooms",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms",
       "method": "GET",
       "description": "List or manage all campus rooms"
     },
     "sensors": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/sensors",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors",
       "method": "GET",
       "description": "List or manage all deployed sensors"
     },
     "sensors_by_type": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/sensors?type={sensorType}",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors?type={sensorType}",
       "method": "GET",
       "description": "Filter sensors by type (e.g. Temperature, CO2, Occupancy)"
     }
@@ -415,22 +415,22 @@ INFO: Deploying web application archive [.../smart-campus-api.war]
   "sensorIds": [],
   "_links": {
     "self": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/rooms/SCI-201",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms/SCI-201",
       "method": "GET",
       "description": "This room"
     },
     "update": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/rooms/SCI-201",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms/SCI-201",
       "method": "PUT",
       "description": "Update this room"
     },
     "delete": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/rooms/SCI-201",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms/SCI-201",
       "method": "DELETE",
       "description": "Delete this room (must have no sensors)"
     },
     "collection": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/rooms",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms",
       "method": "GET",
       "description": "All rooms"
     }
@@ -493,17 +493,17 @@ INFO: Deploying web application archive [.../smart-campus-api.war]
   "value": 23.7,
   "_links": {
     "self": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/sensors/TEMP-001/readings/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors/TEMP-001/readings/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
       "method": "GET",
       "description": "This reading"
     },
     "sensor": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/sensors/TEMP-001",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors/TEMP-001",
       "method": "GET",
       "description": "The sensor that recorded this reading"
     },
     "collection": {
-      "href": "http://localhost:8080/smart-campus-api/api/v1/sensors/TEMP-001/readings",
+      "href": "http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors/TEMP-001/readings",
       "method": "GET",
       "description": "All readings for this sensor"
     }
@@ -759,30 +759,30 @@ Our `LoggingFilter` implements both `ContainerRequestFilter` and `ContainerRespo
 
 ```bash
 # GET /api/v1 — HATEOAS entry point
-curl -s http://localhost:8080/smart-campus-api/api/v1 | python3 -m json.tool
+curl -s http://localhost:8080/smart-campus-api-jaxrs/api/v1 | python3 -m json.tool
 ```
 
 ### Rooms
 
 ```bash
 # List all rooms
-curl -s http://localhost:8080/smart-campus-api/api/v1/rooms | python3 -m json.tool
+curl -s http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms | python3 -m json.tool
 
 # Create a room
-curl -s -X POST http://localhost:8080/smart-campus-api/api/v1/rooms \
+curl -s -X POST http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms \
   -H "Content-Type: application/json" \
   -d '{"id":"SCI-201","name":"Science Block Lab","capacity":30}' | python3 -m json.tool
 
 # Get a specific room
-curl -s http://localhost:8080/smart-campus-api/api/v1/rooms/LIB-301 | python3 -m json.tool
+curl -s http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms/LIB-301 | python3 -m json.tool
 
 # Update a room
-curl -s -X PUT http://localhost:8080/smart-campus-api/api/v1/rooms/SCI-201 \
+curl -s -X PUT http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms/SCI-201 \
   -H "Content-Type: application/json" \
   -d '{"id":"SCI-201","name":"Science Lab (Renovated)","capacity":40}' | python3 -m json.tool
 
 # Delete a room with no sensors → 204 No Content
-curl -s -X DELETE http://localhost:8080/smart-campus-api/api/v1/rooms/SCI-201 \
+curl -s -X DELETE http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms/SCI-201 \
   -w "\nHTTP Status: %{http_code}\n"
 ```
 
@@ -790,18 +790,18 @@ curl -s -X DELETE http://localhost:8080/smart-campus-api/api/v1/rooms/SCI-201 \
 
 ```bash
 # List all sensors
-curl -s http://localhost:8080/smart-campus-api/api/v1/sensors | python3 -m json.tool
+curl -s http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors | python3 -m json.tool
 
 # Filter sensors by type (case-insensitive)
-curl -s "http://localhost:8080/smart-campus-api/api/v1/sensors?type=CO2" | python3 -m json.tool
+curl -s "http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors?type=CO2" | python3 -m json.tool
 
 # Create a sensor linked to a room
-curl -s -X POST http://localhost:8080/smart-campus-api/api/v1/sensors \
+curl -s -X POST http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d '{"id":"LIGHT-001","type":"Lighting","status":"ACTIVE","currentValue":75.0,"roomId":"ENG-102"}' | python3 -m json.tool
 
 # Create sensor with non-existent roomId → 422 Unprocessable Entity
-curl -s -X POST http://localhost:8080/smart-campus-api/api/v1/sensors \
+curl -s -X POST http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d '{"id":"FAIL-001","type":"Test","status":"ACTIVE","currentValue":0,"roomId":"FAKE-999"}' | python3 -m json.tool
 ```
@@ -810,38 +810,38 @@ curl -s -X POST http://localhost:8080/smart-campus-api/api/v1/sensors \
 
 ```bash
 # Post a new reading (also updates sensor currentValue)
-curl -s -X POST http://localhost:8080/smart-campus-api/api/v1/sensors/TEMP-001/readings \
+curl -s -X POST http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors/TEMP-001/readings \
   -H "Content-Type: application/json" \
   -d '{"value":23.7}' | python3 -m json.tool
 
 # Get all readings for a sensor
-curl -s http://localhost:8080/smart-campus-api/api/v1/sensors/TEMP-001/readings | python3 -m json.tool
+curl -s http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors/TEMP-001/readings | python3 -m json.tool
 ```
 
 ### Error Scenarios
 
 ```bash
 # 409 Conflict — delete a room that still has sensors
-curl -s -X DELETE http://localhost:8080/smart-campus-api/api/v1/rooms/LIB-301 | python3 -m json.tool
+curl -s -X DELETE http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms/LIB-301 | python3 -m json.tool
 
 # 415 Unsupported Media Type — wrong Content-Type on POST
-curl -s -X POST http://localhost:8080/smart-campus-api/api/v1/rooms \
+curl -s -X POST http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms \
   -H "Content-Type: text/plain" \
   -d 'not json' -w "\nHTTP Status: %{http_code}\n"
 
 # 403 Forbidden — post reading to a MAINTENANCE sensor
 # Step 1: put sensor into MAINTENANCE
-curl -s -X PUT http://localhost:8080/smart-campus-api/api/v1/sensors/TEMP-001 \
+curl -s -X PUT http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors/TEMP-001 \
   -H "Content-Type: application/json" \
   -d '{"id":"TEMP-001","type":"Temperature","status":"MAINTENANCE","currentValue":22.5,"roomId":"LIB-301"}'
 
 # Step 2: attempt to post a reading → 403
-curl -s -X POST http://localhost:8080/smart-campus-api/api/v1/sensors/TEMP-001/readings \
+curl -s -X POST http://localhost:8080/smart-campus-api-jaxrs/api/v1/sensors/TEMP-001/readings \
   -H "Content-Type: application/json" \
   -d '{"value":24.0}' | python3 -m json.tool
 
 # 404 Not Found — room that does not exist
-curl -s http://localhost:8080/smart-campus-api/api/v1/rooms/NONEXISTENT | python3 -m json.tool
+curl -s http://localhost:8080/smart-campus-api-jaxrs/api/v1/rooms/NONEXISTENT | python3 -m json.tool
 ```
 
 ---
