@@ -5,7 +5,7 @@ Student ID: w2152988
 Module: 5COSC022W
 
 > A lightweight JAX-RS microservice for managing campus IoT infrastructure — rooms, sensors, and sensor reading telemetry.
-> Coursework submission for Smart Campus API (JAX-RS, IIT)
+> Coursework submission for Module 5COSC022W (Smart Campus)
 
 ![Java](https://img.shields.io/badge/Java-11-blue?logo=java&logoColor=white)
 ![Jersey](https://img.shields.io/badge/Jersey-2.41-green?logo=apache&logoColor=white)
